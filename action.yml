@@ -1,0 +1,13 @@
+name: 'github-action-pretty-yarrrml2rml'
+description: 'runs pretty-yarrrml2rml automaticly if `yarrrml2rml` is in the commit and RML files are present'
+
+#inputs:
+  
+
+outputs:
+  run:
+    description: 'Tells the pipeline if morphkgc needs to be executed'
+
+runs:
+  using: 'node16'
+  main: 'index.js'
