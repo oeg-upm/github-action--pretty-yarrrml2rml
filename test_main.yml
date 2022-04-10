@@ -1,27 +1,43 @@
 prefixes:
- mail: "http://example.com/mail#"
- ex: "http://www.example.com/"
+  ont: http://spainaq.linkeddata.com/aq/ontologies/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  dbo: http://dbpedia.org/ontology#
 
-sources:
-  source1:
-    table: example
-    queryFormulation: mysql
 mappings:
-  FromToMaps:
-    sources: source1
-    subjects: "http://www.example.com/note/$(@id)" #~iri (default, only option actually); if no subject is given, we are dealing with a blank node
-    predicateobjects:
-     - [a, mail:note~iri]
-     - [mail:when,$(@year)-$(@month)-$(@day), xsd:date] #~iri or literal (default for object)
-     - [mail:from,$(from)]
-     - [mail:to, $(to)]
-     - [mail:heading,$(heading)]
-     - [mail:body,$(body)]
-  DateTime:
-    source: source1
-    subject: "http://www.example.com/DateTime/$(@year)$(@month)$(@day)"
-    predicateobjects:
-      - [a, ex:DateTime~iri]
-      - [ex:day,--$(@day),xsd:gDay]
-      - [ex:month,--$(@month),xsd:gMonth]
-      - [ex:year, $(@year), xsd:gYear]
+
+  Provincia2018:
+    sources:
+      - [./data.csv~csv]
+    s: http://spainaq.linkeddata.com/aq/ontologies/provincia/$(PROVINCIA)
+    po:
+      - [a, dbo:Provincia]
+      - [ont:provinciaID, $(PROVINCIA), xsd:string]
+      - p: ont:hasMunicipio
+        o: 
+          mapping: Municipio2018
+
+  Municipio2018:
+    sources:
+      - [./data.csv~csv]
+    s: http://spainaq.linkeddata.com/aq/ontologies/municipio/$(MUNICIPIO)
+    po:
+      - [a, dbo:Municipio]
+      - [ont:municipioID, $(MUNICIPIO), xsd:string]
+      - p: ont:hasEstacion
+        o: 
+          mapping: Estacion2018
+
+  Estacion2018:
+    sources:
+      - [./data.csv~csv]
+    s: http://spainaq.linkeddata.com/aq/ontologies/estacion/$(ESTACION)
+    po:
+      - [a, dbo:Estacion]
+      - [ont:estacionID, $(ESTACION), xsd:string]
+      - p: ont:hasMagnitud
+        o: 
+          mapping: Magnitud2018
+
+      - p: ont:hasEmisiones
+        o: 
+          mapping: Emisiones2018
