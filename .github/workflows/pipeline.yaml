@@ -38,6 +38,7 @@ jobs:
         id: 'action-yarrrml2rml'
         with:
           excluded_folders: './node_modules,./.github,./.git'
+          excluded_files: 'action.yml'
 
       - name: running yarrrml2rml
         run: |
