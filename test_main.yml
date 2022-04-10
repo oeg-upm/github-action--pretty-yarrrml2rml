@@ -1,43 +1,12 @@
 prefixes:
-  ont: http://spainaq.linkeddata.com/aq/ontologies/
-  xsd: http://www.w3.org/2001/XMLSchema#
-  dbo: http://dbpedia.org/ontology#
+  ex: "http://example.com/"
+
+authors: John Doe <john@doe.com>
 
 mappings:
-
-  Provincia2018:
+  person:
     sources:
-      - [./data.csv~csv]
-    s: http://spainaq.linkeddata.com/aq/ontologies/provincia/$(PROVINCIA)
+      - ['data.json~jsonpath', '$.persons[*]']
+    s: http://example.com/$(firstname)
     po:
-      - [a, dbo:Provincia]
-      - [ont:provinciaID, $(PROVINCIA), xsd:string]
-      - p: ont:hasMunicipio
-        o: 
-          mapping: Municipio2018
-
-  Municipio2018:
-    sources:
-      - [./data.csv~csv]
-    s: http://spainaq.linkeddata.com/aq/ontologies/municipio/$(MUNICIPIO)
-    po:
-      - [a, dbo:Municipio]
-      - [ont:municipioID, $(MUNICIPIO), xsd:string]
-      - p: ont:hasEstacion
-        o: 
-          mapping: Estacion2018
-
-  Estacion2018:
-    sources:
-      - [./data.csv~csv]
-    s: http://spainaq.linkeddata.com/aq/ontologies/estacion/$(ESTACION)
-    po:
-      - [a, dbo:Estacion]
-      - [ont:estacionID, $(ESTACION), xsd:string]
-      - p: ont:hasMagnitud
-        o: 
-          mapping: Magnitud2018
-
-      - p: ont:hasEmisiones
-        o: 
-          mapping: Emisiones2018
+      - [a, ex:Person]
