@@ -23,6 +23,7 @@ jobs:
 
           case "${{ github.event.head_commit.message }}" in
               *yarrrml2rml* ) echo "::set-output name=trigger::true";;
+              *exec-actn* ) echo "::set-output name=trigger::true";;
               * ) echo "::set-output name=trigger::false";;
           esac
 
@@ -45,16 +46,18 @@ jobs:
           echo "---"
           cat ./pretty_yarrrml2rml-exec/config.sh
           echo "---"
-          # if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
-          # then
-          #   sh ./pretty_yarrrml2rml-exec/config.sh
-          #   rm -r ./pretty_yarrrml2rml-exec
+          if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
+          then
+            sh ./pretty_yarrrml2rml-exec/config.sh
+            rm -r ./pretty_yarrrml2rml-exec
+            
+            cat ./test.rml.ttl 
 
-          #   git config --global user.name 'github-actions[bot]'
-          #   git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          #   git add .
-          #   set +e
-          #   git status | grep "nothing to commit, working tree clean"
-          #   if [ $? -eq 0 ]; then set -e; echo "INFO: No changes since last run"; else set -e; \
-          #     git commit -m "morph-kgc result for ${{ github.actor }} - ${{ github.event.number }}" --allow-empty; git push --force; fi
-          # fi
+            # git config --global user.name 'github-actions[bot]'
+            # git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            # git add .
+            # set +e
+            # git status | grep "nothing to commit, working tree clean"
+            # if [ $? -eq 0 ]; then set -e; echo "INFO: No changes since last run"; else set -e; \
+            #   git commit -m "morph-kgc result for ${{ github.actor }} - ${{ github.event.number }}" --allow-empty; git push --force; fi
+          fi
