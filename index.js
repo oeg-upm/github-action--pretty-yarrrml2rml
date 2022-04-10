@@ -71,6 +71,7 @@ function getAllFiles (dirPath, excluded_folders, arrayOfFiles) {
     for (let ex_path of excluded_folders) {
       ex_path = ex_path.split('/');
       for (const ex_file of ex_path) {
+        console.log("El ex_file:: " + ex_file + " y el file:: " + file);
         if(file == ex_file )
           flag = false;
       }
