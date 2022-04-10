@@ -11,7 +11,7 @@ async function main() {
 
         let flag = true;
         for (let path of excluded_folders) {
-            if (path.split('/').pop() == ""){
+            if (path == "./"){
                 flag = false;
                 console.log("pop")
             }
