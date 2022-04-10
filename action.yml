@@ -1,8 +1,16 @@
 name: 'github-action-pretty-yarrrml2rml'
 description: 'runs pretty-yarrrml2rml automaticly if `yarrrml2rml` is in the commit and RML files are present'
 
-#inputs:
-
+inputs:
+  exclude:
+    description: 'The folders and files that needs to be exluded for execution'
+    required: false
+  only_specific:
+    description: 'Just the files in this variable are executed'
+    required: false
+  path_to_output:
+    description: 'The path to the output'
+    required: false
 
 outputs:
   run:
