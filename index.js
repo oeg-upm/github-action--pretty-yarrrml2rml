@@ -19,6 +19,7 @@ async function main() {
 
         let changes = [];
         if (flag){
+            console.log("El excluded_folder:: " + excluded_folders)
             let files = getAllFiles('./',excluded_folders);
             for (let file of files) {
                 file = file.split('/');
@@ -62,6 +63,7 @@ async function main() {
 }
 
 function getAllFiles (dirPath, excluded_folders, arrayOfFiles) {
+  console.log("El excluded_folder dentro de la llamada:: " + excluded_folders)
   let files = fs.readdirSync(dirPath)
 
   arrayOfFiles = arrayOfFiles || []
