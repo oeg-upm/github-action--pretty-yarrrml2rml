@@ -40,8 +40,11 @@ jobs:
       - name: running morph-kgc
         run: |
           ls
+          echo "---"
           ls ./pretty_yarrrml2rml-exec/
+          echo "---"
           cat ./pretty_yarrrml2rml-exec/config.sh
+          echo "---"
           # if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
           # then
           #   sh ./pretty_yarrrml2rml-exec/config.sh

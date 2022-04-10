@@ -30,7 +30,7 @@ async function main() {
 
             if (file_extension == 'yml'){
                 core.setOutput('run', true);
-                data = 'python3 -m pretty_yarrrml2rml -i' + file + '-o' + fle + '.rml;\n'
+                data = 'python3 -m pretty_yarrrml2rml -i' + file + '-o' + fle + '.rml.ttl;\n'
                 fs.appendFile('./pretty_yarrrml2rml-exec/config.sh',data,err => {
                     if (err) {
                         core.setFailed(error.message);
