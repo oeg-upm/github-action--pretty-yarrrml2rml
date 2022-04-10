@@ -6,20 +6,19 @@ const path = require('path');
 async function main() {
     try {
         let excluded_folders = core.getInput('exclude_folders', { required: false });
-
+        console.log(excluded_folders);
         excluded_folders = excluded_folders.split(',')
 
         let flag = true;
         for (let path of excluded_folders) {
             if (path == "./"){
                 flag = false;
-                console.log("pop")
             }
         }
 
         let changes = [];
         if (flag){
-            console.log("El excluded_folder:: " + excluded_folders)
+            console.log("El excluded_folder:: " + excluded_folders);
             let files = getAllFiles('./',excluded_folders);
             for (let file of files) {
                 file = file.split('/');
@@ -63,7 +62,7 @@ async function main() {
 }
 
 function getAllFiles (dirPath, excluded_folders, arrayOfFiles) {
-  console.log("El excluded_folder dentro de la llamada:: " + excluded_folders)
+  console.log("El excluded_folder dentro de la llamada:: " + excluded_folders);
   let files = fs.readdirSync(dirPath)
 
   arrayOfFiles = arrayOfFiles || []
