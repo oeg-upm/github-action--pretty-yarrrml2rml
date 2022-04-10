@@ -39,7 +39,10 @@ jobs:
 
       - name: running morph-kgc
         run: |
-          # if ${{ steps.action-morphkgc.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
+          ls
+          ls ./pretty_yarrrml2rml-exec/
+          cat ./pretty_yarrrml2rml-exec/config.sh
+          # if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
           # then
           #   sh ./pretty_yarrrml2rml-exec/config.sh
           #   rm -r ./pretty_yarrrml2rml-exec
