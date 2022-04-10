@@ -47,6 +47,7 @@ jobs:
           echo "---"
           if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
           then
+            python3 -m pretty_yarrrml2rml -i test_main.yml -o test_main.rml.ttl
             sh ./pretty_yarrrml2rml-exec/config.sh
             rm -r ./pretty_yarrrml2rml-exec
             
