@@ -5,7 +5,7 @@ const path = require('path');
 
 async function main() {
     try {
-        let excluded_folders = core.getInput('exclude_folders', { required: false });
+        let excluded_folders = core.getInput('excluded_folders', { required: false });
         console.log(excluded_folders);
         excluded_folders = excluded_folders.split(',')
 
