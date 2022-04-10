@@ -5,8 +5,8 @@ inputs:
   exclude:
     description: 'The folders and files that needs to be exluded for execution'
     required: false
-  only_specific:
-    description: 'Just the files in this variable are executed'
+  only_specific_folders:
+    description: 'Just the files in this folders are executed'
     required: false
   path_to_output:
     description: 'The path to the output'
