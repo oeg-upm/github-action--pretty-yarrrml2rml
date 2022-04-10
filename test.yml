@@ -4,7 +4,7 @@ prefixes:
   dbo: http://dbpedia.org/ontology/
 
 base: https://betweenourworlds.org/generation-rule/
-
+ 
 sources:
   anime_source:
     access: anime-0.json
