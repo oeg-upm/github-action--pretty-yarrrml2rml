@@ -5,14 +5,28 @@ const path = require('path');
 
 async function main() {
     try {
+        let excluded_folders = core.getInput('exclude_folders', { required: false });
+
+        excluded_folders = excluded_folders.split(',')
+
+        let flag = true;
+        for (let path of excluded_folders) {
+            if (path.split('/').pop() == "")
+                flag = false;
+        }
 
         let changes = [];
-        let files = getAllFiles('./');
-        for (let file of files) {
-            file = file.split('/');
-            file.splice(0, 6);
-            changes.push(file.join('/'));
+        if (flag){
+            let files = getAllFiles('./',excluded_folders);
+            for (let file of files) {
+                file = file.split('/');
+                file.splice(0, 6);
+                changes.push(file.join('/'));
+            }
         }
+
+        console.log("Los cambios::")
+        console.log(changes)
 
         core.setOutput('run', false);
 
@@ -45,19 +59,29 @@ async function main() {
     }
 }
 
-function getAllFiles (dirPath, arrayOfFiles) {
+function getAllFiles (dirPath, excluded_folders, arrayOfFiles) {
   let files = fs.readdirSync(dirPath)
 
   arrayOfFiles = arrayOfFiles || []
 
   files.forEach(function(file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
-    } else {
-      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+    let flag = true;
+    for (let ex_path of excluded_folders) {
+      ex_path = ex_path.split('/');
+      for (const ex_file of ex_path) {
+        if(file == ex_file )
+          flag = false;
+      }
+    }
+    if(flag){
+      if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+        arrayOfFiles = getAllFiles(dirPath + "/" + file, excluded_folders, arrayOfFiles)
+      } 
+      else {
+        arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+      }
     }
   })
-
   return arrayOfFiles
 }
 
