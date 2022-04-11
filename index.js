@@ -22,7 +22,10 @@ async function main() {
 
         let pth_fldr;
         if (only_specific_folders)
-          pth_fldr='./' + only_specific_folders;
+        {
+          pth_fldr=only_specific_folders;
+          fs.mkdirSync(only_specific_folders, { recursive: true })
+        }
         else
            pth_fldr='./';
 
@@ -42,14 +45,15 @@ async function main() {
 
         core.setOutput('run', false);
 
-        fs.mkdirSync('./pretty_yarrrml2rml-exec/', { recursive: true })
-        let data='#!/bin/bash\n\n';
-        fs.writeFile('./pretty_yarrrml2rml-exec/config.sh', data, err => {
-                if (err) {
-                    core.setFailed(error.message);
-                }
-            })
-
+        if(fs.mkdirSync('./pretty_yarrrml2rml-exec/', { recursive: true }))
+        {
+          let data='#!/bin/bash\n\n';
+          fs.writeFile('./pretty_yarrrml2rml-exec/config.sh', data, err => {
+                  if (err) {
+                      core.setFailed(error.message);
+                  }
+              })
+        }
         for (const file of changes) {
             let fle = file.split('.');
             const file_extension = fle.pop();
