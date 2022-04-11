@@ -10,7 +10,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    name: action-pretty-yarrrml2rml
+    name: action-pretty-yarrrml2rml 
     steps:
       - name: checkout
         uses: actions/checkout@v2
