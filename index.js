@@ -7,6 +7,7 @@ async function main() {
     try {
         let excluded_folders = core.getInput('excluded_folders', { required: false });
         let excluded_files = core.getInput('excluded_files', { required: false });
+        let only_specific_folders = core.getInput('only_specific_folders', { required: false });
 
         excluded_folders = excluded_folders.split(',');
         excluded_files = excluded_files.split(',');
@@ -20,7 +21,7 @@ async function main() {
 
         let changes = [];
         if (flag){
-            let files = getAllFiles('./',excluded_folders,excluded_files);
+            let files = getAllFiles('./' + only_specific_folders,excluded_folders,excluded_files);
             for (let file of files) {
                 file = file.split('/');
                 file.splice(0, 6);
