@@ -8,6 +8,7 @@ async function main() {
         let excluded_folders = core.getInput('excluded_folders', { required: false });
         let excluded_files = core.getInput('excluded_files', { required: false });
         let only_specific_folders = core.getInput('only_specific_folders', { required: false });
+        let path_to_output = core.getInput('path_to_output', { required: false });
 
         excluded_folders = excluded_folders.split(',');
         excluded_files = excluded_files.split(',');
@@ -19,9 +20,16 @@ async function main() {
             }
         }
 
+        let pth_fldr;
+        if (only_specific_folders)
+          pth_fldr='./' + only_specific_folders;
+        else
+           pth_fldr='./';
+
+
         let changes = [];
         if (flag){
-            let files = getAllFiles('./' + only_specific_folders,excluded_folders,excluded_files);
+            let files = getAllFiles(pth_fldr,excluded_folders,excluded_files);
             for (let file of files) {
                 file = file.split('/');
                 file.splice(0, 6);
@@ -49,7 +57,12 @@ async function main() {
             if (file_extension == 'yml'){
                 core.setOutput('run', true);
                 fle=fle.join('.');
-                data = 'python3 -m pretty_yarrrml2rml -i ' + file + ' -o ' + fle + '.rml.ttl;\n'
+                let out_path;
+                if (path_to_output)
+                  out_path=path_to_output + fle.split('/').pop();
+                else
+                  out_path=fle;
+                data = 'python3 -m pretty_yarrrml2rml -i ' + file + ' -o ' + out_path + '.rml.ttl;\n'
                 fs.appendFile('./pretty_yarrrml2rml-exec/config.sh',data,err => {
                     if (err) {
                         core.setFailed(error.message);
