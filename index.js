@@ -20,12 +20,11 @@ async function main() {
             }
         }
 
+        fs.mkdirSync(path_to_output, { recursive: true })
+
         let pth_fldr;
         if (only_specific_folders)
-        {
           pth_fldr=only_specific_folders;
-          fs.mkdirSync(only_specific_folders, { recursive: true })
-        }
         else
            pth_fldr='./';
 

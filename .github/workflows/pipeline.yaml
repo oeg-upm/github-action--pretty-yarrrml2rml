@@ -50,6 +50,7 @@ jobs:
           echo "---"
           cat ./pretty_yarrrml2rml-exec/config.sh
           echo "---"
+          ls ./test/
           if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
           then
             sh ./pretty_yarrrml2rml-exec/config.sh
