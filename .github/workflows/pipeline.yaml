@@ -12,17 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     name: action-pretty-yarrrml2rml
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
+    
       - name: commit trigger
         id: 'commit_trigger'
         run: |
-
           case "${{ github.event.head_commit.message }}" in
               *yarrrml2rml* ) echo "::set-output name=trigger::true";;
               * ) echo "::set-output name=trigger::false";;
           esac
+
+      - name: checkout
+        uses: actions/checkout@v2
 
       - name: installing yarrrml2rml
         run: |
