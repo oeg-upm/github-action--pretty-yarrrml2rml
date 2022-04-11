@@ -63,7 +63,7 @@ async function main() {
                 fle=fle.join('.');
                 let out_path;
                 if (path_to_output)
-                  out_path=path_to_output + fle.split('/').pop();
+                  out_path=path_to_output.replace("./", "") + fle.split('/').pop();
                 else
                   out_path=fle;
                 data = 'python3 -m pretty_yarrrml2rml -i ' + file + ' -o ' + out_path + '.rml.ttl;\n'
