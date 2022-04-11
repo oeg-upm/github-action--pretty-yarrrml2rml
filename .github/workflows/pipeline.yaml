@@ -44,25 +44,16 @@ jobs:
 
       - name: running yarrrml2rml
         run: |
-          ls
-          echo "---"
-          ls ./pretty_yarrrml2rml-exec/
-          echo "---"
-          cat ./pretty_yarrrml2rml-exec/config.sh
-          echo "---"
-          ls ./test/
           if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
           then
             sh ./pretty_yarrrml2rml-exec/config.sh
             rm -r ./pretty_yarrrml2rml-exec
 
-            ls ./test/output/
-
-            # git config --global user.name 'github-actions[bot]'
-            # git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            # git add .
-            # set +e
-            # git status | grep "nothing to commit, working tree clean"
-            # if [ $? -eq 0 ]; then set -e; echo "INFO: No changes since last run"; else set -e; \
-            #   git commit -m "morph-kgc result for ${{ github.actor }} - ${{ github.event.number }}" --allow-empty; git push --force; fi
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .
+            set +e
+            git status | grep "nothing to commit, working tree clean"
+            if [ $? -eq 0 ]; then set -e; echo "INFO: No changes since last run"; else set -e; \
+              git commit -m "morph-kgc result for ${{ github.actor }} - ${{ github.event.number }}" --allow-empty; git push --force; fi
           fi
