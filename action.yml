@@ -6,7 +6,7 @@ inputs:
     description: 'The folders that needs to be exluded for execution'
     required: false
   excluded_files:
-    description: 'The folders that needs to be exluded for execution'
+    description: 'The files that needs to be exluded for execution'
     required: false
 
   only_specific_folders:

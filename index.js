@@ -12,6 +12,7 @@ async function main() {
 
         excluded_folders = excluded_folders.split(',');
         excluded_files = excluded_files.split(',');
+        only_specific_folders = only_specific_folders.split(',');
 
         let flag = true;
         for (let path of excluded_folders) {
@@ -22,23 +23,31 @@ async function main() {
 
         fs.mkdirSync(path_to_output, { recursive: true })
 
-        let pth_fldr;
-        if (only_specific_folders)
-          pth_fldr=only_specific_folders;
-        else
-           pth_fldr='./';
-
-
         let changes = [];
-        if (flag){
-            let files = getAllFiles(pth_fldr,excluded_folders,excluded_files);
-            for (let file of files) {
-                file = file.split('/');
-                file.splice(0, 6);
-                changes.push(file.join('/'));
+        if (only_specific_folders)
+        {
+          for (const folder of only_specific_folders) {
+            if (flag){
+                let files = getAllFiles(folder,excluded_folders,excluded_files);
+                for (let file of files) {
+                    file = file.split('/');
+                    file.splice(0, 6);
+                    changes.push(file.join('/'));
+                }
             }
+          }
         }
-
+        else
+        {
+          if (flag){
+              let files = getAllFiles('./',excluded_folders,excluded_files);
+              for (let file of files) {
+                  file = file.split('/');
+                  file.splice(0, 6);
+                  changes.push(file.join('/'));
+              }
+          }
+        }
         console.log("Los cambios::")
         console.log(changes)
 
