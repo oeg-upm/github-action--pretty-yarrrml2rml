@@ -34,7 +34,7 @@ jobs:
         with:
           excluded_folders: './node_modules,./.github,./.git'
           excluded_files: 'action.yml'
-          only_specific_folders: './test/,./.github/'
+          only_specific_folders: './test/'
           path_to_output: './test/output/'
 
       - name: running yarrrml2rml
