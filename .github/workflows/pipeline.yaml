@@ -39,6 +39,7 @@ jobs:
 
       - name: running yarrrml2rml
         run: |
+          cat ./pretty_yarrrml2rml-exec/config.sh
           if ${{ steps.action-yarrrml2rml.outputs.run }} && ${{ steps.commit_trigger.outputs.trigger }}
           then
             sh ./pretty_yarrrml2rml-exec/config.sh
