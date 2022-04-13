@@ -3,7 +3,9 @@ This GitHub Action action uses the tool (pretty-yarrrml2rml)[https://github.com/
 
 ## Usage
 The file extension needs to be `.yml`.
+
 If you want to execute the Action you must add the word `yarrrml2rml` in the commit. (dependant on the pipeline)
+
 Create a `.github.workflows/yarrrml2rml.yaml` file in the repository with the following example workflow:
 
 ```
