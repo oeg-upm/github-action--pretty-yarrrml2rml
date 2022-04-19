@@ -67,11 +67,11 @@ jobs:
 ```
 ## Inputs
 ### `excluded_folders` (optional)
-The folders that needs to be exluded for execution, needs the full path and the diffetent paths are separated by `,`.
+The folders that needs to be excluded for execution, needs the full path and the different paths are separated by `,` .
 ### `excluded_files`  (optional)
-The files that needs to be exluded for execution, needs the full path without the first `./` and the diffetent paths are separated by `,`.
+The files that needs to be excluded for execution, needs the full path without the first ./ and the different paths are separated by `,`.
 ### `only_specific_folders` (optional)
-Just the files in this folders are executed, needs the full path and the diffetent paths are separated by `,`.
+Just the files in this folders are executed, needs the full path and the different paths are separated by `,`.
 ### `path_to_output` (optional)
 The path to the output, needs the full path.
 
