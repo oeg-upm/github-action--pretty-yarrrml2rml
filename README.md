@@ -1,5 +1,5 @@
 # github-action-pretty-yarrrml2rml
-This GitHub Action action uses the tool [pretty-yarrrml2rml](https://github.com/oeg-upm/pretty-yarrrml2rml) to translate yml files into rml.ttl files.
+This GitHub Action action uses the tool [pretty-yarrrml2rml](https://github.com/oeg-upm/pretty-yarrrml2rml) to translate YARRRML files into RML files.
 
 ## Usage
 The file extension needs to be `.yml`.
@@ -67,13 +67,13 @@ jobs:
 ```
 ## Inputs
 ### `excluded_folders` (optional)
-The folders that needs to be excluded for execution, needs the full path and the different paths are separated by `,` .
+The folders that need to be excluded from execution. They must be expressed as full paths, and different paths should be separated by `,` .
 ### `excluded_files`  (optional)
-The files that needs to be excluded for execution, needs the full path without the first ./ and the different paths are separated by `,`.
+The files that need to be excluded from execution. They must be expressed as full paths, without the first ./. Different paths are separated by `,`.
 ### `only_specific_folders` (optional)
-Just the files in this folders are executed, needs the full path and the different paths are separated by `,`.
+Just the files in these folders are executed. They must be expressed as full paths, and different paths are separated by `,`.
 ### `path_to_output` (optional)
-The path to the output, needs the full path.
+The path to the output. It must be the full path.
 
 If this option is not present the Action will put the results in the same path as the inputs.
 ## Outputs
