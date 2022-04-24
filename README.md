@@ -1,5 +1,5 @@
 # github-action-pretty-yarrrml2rml
-This GitHub Action action uses the tool (pretty-yarrrml2rml)[https://github.com/oeg-upm/pretty-yarrrml2rml] to translate yml files into rml.ttl files.
+This GitHub Action action uses the tool [pretty-yarrrml2rml](https://github.com/oeg-upm/pretty-yarrrml2rml) to translate yml files into rml.ttl files.
 
 ## Usage
 The file extension needs to be `.yml`.
